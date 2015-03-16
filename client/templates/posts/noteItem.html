@@ -1,0 +1,68 @@
+<template name="noteItem">
+  <div class="row">
+    <div class="col-md-3">
+      {{#if ifUser}}
+        <div class="notes page">
+          {{#each notes}}
+            <h3><a href="{{pathFor 'noteItem'}}">{{title}}</a></h3>
+          {{/each}}
+        </div>
+        {{#if notesFound}}
+        <br>
+        <br>
+        {{/if}}
+        <form class="form">
+          <button type="submit" class="addNote btn btn-default">Add note</button>
+        </form>
+      {{/if}}
+    </div>
+    <div class="col-md-9">
+      {{#if title }}
+        <div class="note-content">
+          {{#if isOwner}}
+
+            <form class="form">
+              <div class="form-group">
+                <input class="form-control title-input" type="text" value="{{title}}">
+              </div>
+              <div class="form-group">
+                <textarea rows="10" class="form-control text-textarea">{{text}}</textarea>
+              </div>
+            </form>
+
+          {{else}}
+
+            {{title}}
+            <br>
+            {{text}}
+
+          {{/if}}
+        </div>
+
+        {{#if isOwner}}
+
+          <form class="form">
+              <button type="submit" class="deleteNote btn btn-danger">Delete note</button>
+
+              <label class="togglePrivate">
+                <input type="checkbox" checked="{{private}}" />
+                Private
+              </label>
+
+          </form>
+
+        {{/if}}
+
+      {{else}}
+        {{#if ifUser}}
+          Choose or create a note
+
+        {{else}}
+          Please sign in
+        {{/if}}
+
+      {{/if}}
+
+    </div>
+  </div>
+</template>
