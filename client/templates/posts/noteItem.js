@@ -37,8 +37,6 @@ Template.noteItem.events({
 
     Meteor.call("deleteNote",this._id);
 
-    Router.go('/');
-
     return false;
 
   },
